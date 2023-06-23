@@ -8,23 +8,28 @@
     <div class="col-6">
     
         <h3>Latest quotes</h3>
-            <ol>
-            <li>TEst
-            <li>TEst
-            <li>TEst
-            <li>TEst
-        </ol>
+            <ul>
+                {% for quote in latestQuotes %}
+                    <li>
+                        {{ quote.data }}
+                        <br>- {{ quote.createdAt|date }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <button class="btn btn-primary">Ajouter une citation</button>
     </div>
 
     <div class="col-6">
     
-        <h3>Latest quotes</h3>
-            <ol>
-            <li>TEst
-            <li>TEst
-            <li>TEst
-            <li>TEst
-        </ol>
+        <h3>Latest Authors</h3>
+            <ul>
+                {% for author in latestAuthors %}
+                    <li>
+                        {{ author.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <button class="btn btn-primary">Ajouter un Auteur</button>
     </div>
 
 </div>
