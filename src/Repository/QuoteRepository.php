@@ -39,20 +39,20 @@ class QuoteRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Quote[] Returns an array of Quote objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('q')
-//            ->andWhere('q.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('q.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Quote[] Returns an array of Quote objects
+     */
+    public function findLast(int $max=5): array
+    {
+        return $this->createQueryBuilder('q')
+            //->andWhere('q.exampleField = :val')
+            //->setParameter('val', $value)
+            ->orderBy('q.id', 'DESC')
+            ->setMaxResults($max)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?Quote
 //    {

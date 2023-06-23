@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 use App\Entity\Author;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 
 class AuthorCrudController extends AbstractCrudController
 {
@@ -28,8 +29,10 @@ class AuthorCrudController extends AbstractCrudController
 
         yield TextField::new('name')
             ->setLabel("Nom de l'auteur");
+
+        //yield TextField::new('slug',"Slug / Permalink");
         
-        yield TextField::new('bio')
+        yield TextareaField::new('bio')
             ->setLabel("Biographie")
             ->setHelp("Si jamais il y a kekchose d'interessant a dire");
         

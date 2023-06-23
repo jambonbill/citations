@@ -5,7 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Author;
 use App\Entity\Quote;
 use App\Entity\User;
-
+use App\Repository\AuthorRepository;
+use App\Repository\QuoteRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
@@ -20,11 +21,27 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
+    private AuthorRepository $authorRepository;
+    private QuoteRepository $quoteRepository;
     
+    public function __construct(QuoteRepository $quoteRepository, AuthorRepository $authorRepository)
+    {
+        $this->quoteRepository = $quoteRepository;
+        $this->authorRepository = $authorRepository;
+    }
+
+
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        return $this->render('admin/dashboard.html.twig');
+        $latestQuotes = $this->quoteRepository->findLast();
+        $latestAuthors = $this->authorRepository->findLast();
+        
+        return $this->render('admin/dashboard.html.twig',[
+            'latestQuotes'=>$latestQuotes,
+            'latestAuthors'=>$latestAuthors
+        ]);
+
         //return parent::index();
 
         // Option 1. You can make your dashboard redirect to some common page of your backend

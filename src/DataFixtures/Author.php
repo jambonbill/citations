@@ -13,7 +13,7 @@ class Author extends Fixture
     {
         $entity = new EntityAuthor();
         $entity->setName("Steve jobs");
-        $entity->setBio("Steve etait un con");
+        $entity->setBio("Steve etait un con");        
         $manager->persist($entity);
 
         $author = new EntityAuthor();

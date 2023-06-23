@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Cocur\Slugify\Slugify;
+
+
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
 class Author
 {
@@ -30,10 +33,14 @@ class Author
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Quote::class)]
     private Collection $quotes;
 
+    #[ORM\Column(length: 31, nullable: false)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->quotes = new ArrayCollection();
         $this->created_at=new \DateTimeImmutable();
+        $slugify = new Slugify();
     }
 
     public function getId(): ?int
@@ -49,6 +56,9 @@ class Author
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        //$slugify = new Slugify();
+        $this->setSlug($name);
 
         return $this;
     }
@@ -122,5 +132,18 @@ class Author
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): static
+    {
+        $slug=strtolower($slug);
+        $this->slug = $slug;
+
+        return $this;
     }
 }
