@@ -53,11 +53,18 @@ class ApiController extends AbstractController
     #[Route('/api/quotes', name: 'api_quotes')]
     public function quotes(QuoteRepository $repo): Response
     {
-        $quotes=$repo->findLast();
-        $json=[];
+        $quotes=$repo->findAll();
+        $dat=[];
+        $dat['quotes']=[];
+        foreach($quotes as $quote){
+            $qot=[];
+            $qot['data']=$quote->getData();
+            $qot['author']=$quote->getAuthor();
+            $dat['quotes'][]=$qot;
+        }
         
         //$jsonContent = $serializer->serialize($quotes, 'json');
-        return $this->json($json);
+        return $this->json($dat);
     }
 
     
