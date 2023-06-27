@@ -6,6 +6,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 
 use App\Entity\Quote;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -42,6 +43,13 @@ class QuoteCrudController extends AbstractCrudController
         yield DateField::new('createdAt')
             ->setTextAlign('right')
             ->hideOnForm();    
+    }
+
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return parent::configureFilters($filters)
+            ->add('author');
     }
     
 }
