@@ -64,20 +64,23 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Citations');
+            ->setTitle('Citations Backoffice');
     }
 
     public function configureMenuItems(): iterable
     {
-        //yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToDashboard('', 'fa fa-home');
         //yield MenuItem::linkToDashboard('Dashboard2', 'fa fa-home');
         
         yield MenuItem::linkToCrud('Authors', 'fas fa-list', Author::class);
         yield MenuItem::linkToCrud('Quotes', 'fas fa-list', Quote::class);
         //yield MenuItem::linkToUrl("--","",'#');
-        yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
+        yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class)
+            //->setPermission('ROLE_ADMIN')
+            ;
         
-        //yield MenuItem::linkToUrl("--","",'#');
+        
+        yield MenuItem::linkToUrl("API","fas fa-code",'/api');   
         
         //yield MenuItem::linkToUrl("symfonycasts","",'https://symfonycasts.com/screencast/easyadminbundle/crud-controller#play');
         
@@ -89,7 +92,9 @@ class DashboardController extends AbstractDashboardController
     public function configureUserMenu(\Symfony\Component\Security\Core\User\UserInterface $user):UserMenu
     {
         if (!$user instanceof User) {
-
+            dd('?');
+        }else{
+            //dd($user);
         }
 
         return parent::configureUserMenu($user)
@@ -111,6 +116,7 @@ class DashboardController extends AbstractDashboardController
             //->addCssFile("foo.css")
             //->addHtmlContentToBody("<h1>HEAD</h1>")
             //->addHtmlContentToHead("<h1>BODY</h1>")
+            
         ;
     } 
 
