@@ -10,9 +10,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+//#[IsGranted('ROLE_ADMIN')]
 class UserCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -62,4 +65,10 @@ class UserCrudController extends AbstractCrudController
     
     }
     
+    public function configureFilters(Filters $filters): Filters
+    {
+        //https://symfonycasts.com/screencast/easyadminbundle/filters
+        return parent::configureFilters($filters)->add('roles');
+    }
+
 }
