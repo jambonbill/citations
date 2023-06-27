@@ -1,35 +1,53 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
 
-{% block page_title %}Admin Citations{% endblock %}
+{% block page_title %}<i class="fas fa-home"></i> Citations{% endblock %}
 
 {% block main %}
 <div class="row">
 
     <div class="col-6">
     
-        <h3>Latest quotes</h3>
+        <h3>Les dernieres citations</h3>
             <ul>
                 {% for quote in latestQuotes %}
                     <li>
                         {{ quote.data }}
-                        <br>- {{ quote.createdAt|date }}
+                        <br><b>{{ quote.author }}</b> - <i class="text-muted">{{ quote.createdAt|date }}</i>
                     </li>
+                    
                 {% endfor %}
             </ul>
-            <button class="btn btn-primary">Ajouter une citation</button>
+            
+            <a href="{{ ea_url().setController('App\\Controller\\Admin\\QuoteCrudController')
+                                    .setAction('new')
+                                }}" class="btn btn-primary">Ajouter une citation</a>
     </div>
 
     <div class="col-6">
     
-        <h3>Latest Authors</h3>
+        <h3>Les derniers Auteurs</h3>
             <ul>
                 {% for author in latestAuthors %}
                     <li>
+                        <a href="{{ ea_url().setController('App\\Controller\\Admin\\AuthorCrudController')
+                                    .setAction('edit')
+                                    .setEntityId(author.id)
+                                }}">
                         {{ author.name }}
+                        </a>
                     </li>
                 {% endfor %}
             </ul>
-            <button class="btn btn-primary">Ajouter un Auteur</button>
+            
+            <a href="{{ ea_url().setController('App\\Controller\\Admin\\AuthorCrudController')
+                                    .setAction('new')
+                                }}" class="btn btn-primary">Ajouter un auteur</a>
+    </div>
+
+    <hr>
+    
+    <div class="col-12">
+        <div class="alert alert-info">Roles:[]</div>
     </div>
 
 </div>
