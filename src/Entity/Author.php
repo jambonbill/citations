@@ -35,12 +35,14 @@ class Author
 
     #[ORM\Column(length: 31, nullable: false)]
     private ?string $slug = null;
+    
+    private $slugify = null;
 
     public function __construct()
     {
         $this->quotes = new ArrayCollection();
         $this->created_at=new \DateTimeImmutable();
-        $slugify = new Slugify();
+        $this->slugify = new Slugify();
     }
 
     public function getId(): ?int
@@ -141,7 +143,8 @@ class Author
 
     public function setSlug(?string $slug): static
     {
-        $slug=strtolower($slug);
+        //$slug=strtolower($slug);
+        $slug=$this->slugify->slugify($slug);
         $this->slug = $slug;
 
         return $this;
