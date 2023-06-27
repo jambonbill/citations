@@ -20,7 +20,7 @@ class User extends Fixture
         $user->setPassword($pwd);
         $user->setIsVerified(true);
         $user->setCreatedAt(new \DateTimeImmutable);
-        $user->setRoles(["ROLE_ADMIN"]);
+        $user->setRoles(["ROLE_ADMIN, ROLE_SUPERADMIN"]);
         
         $manager->persist($user);
 
