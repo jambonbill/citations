@@ -14,6 +14,7 @@ class User extends Fixture
         $pwd='$2y$13$HFGr4Mp58s6S5JQdLNqTCOsyKnzKoMPJz9mKkR3gh2gnIm1G1py9K';//1234
 
         $user = new EntityUser();
+        //$user->setId(1);
         $user->setFirstName("Bob");
         $user->setLastName("Administrator");
         $user->setEmail("admin@citations.fr");
@@ -25,6 +26,7 @@ class User extends Fixture
         $manager->persist($user);
 
         $user = new EntityUser();
+        //$user->setId(2);
         $user->setEmail("moderator@citations.fr");
         $user->setFirstName("Robert");
         $user->setLastName("Bidouillon");

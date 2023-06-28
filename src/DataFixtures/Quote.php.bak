@@ -6,19 +6,27 @@ use App\Entity\Quote as EntityQuote;
 use App\Repository\QuoteRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use App\Factory\AuthorFactory;
 
 class Quote extends Fixture
 {
+    public function __construct()
+    {
+        echo "yoo bro ca quote ?\n";
+    }
+
     public function load(ObjectManager $manager): void
     {
 
         //$manager->getRepository(QuoteRepository $repo);//to continue
 
         $entity = new EntityQuote();
-        //$entity->setAuthor()
+        
         $entity->setData("Il vaut mieux une couille sur un mur qu'un nez dans une chaussure");
         //$entity->setInfo()
-        $entity->setCreatedAt(new \DateTimeImmutable());
+        //$entity->setCreatedAt(new \DateTimeImmutable());
+        
+        //$entity->setAuthor(AuthorFactory::random());
         
         $manager->persist($entity);
 

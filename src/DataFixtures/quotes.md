@@ -1,0 +1,12 @@
+# quotes
+- Les citations, c'est pour les cons
+- Un pigeon, c'est plus con qu'un dauphin, d'accord... mais ça vole.
+- Ça m'en touche une sans faire bouger l'autre
+- Je suis adroit de la main gauche et je suis gauche de la main droite.
+- Il a un côté sympathique, seulement on le voit toujours de face.
+- Le premier homme qui est mort a dû être drôlement surpris.
+- Qui avale une noix de coco, fait confiance en son anus
+- Si l'oeuf est le fruit, alors l'arbre est la poule.
+- Un homme sans moustache c'est comme une maison sans balcon
+- Pour vendre la maison, il faut tondre le gazon.
+- Un homme sans moustache, c'est comme une femme avec une moustache.
