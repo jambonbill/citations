@@ -15,7 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-//#[IsGranted('ROLE_ADMIN')]
+#[IsGranted('ROLE_ADMIN')]
 class UserCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -53,7 +53,7 @@ class UserCrudController extends AbstractCrudController
         //    ->renderAsSwitch(false);
         
         //https://symfonycasts.com/screencast/easyadminbundle/field-config#play
-        $roles=['ROLE_ADMIN','ROLE_SUPERADMIN','ROLE_MODERATOR'];
+        $roles=['ROLE_ADMIN','ROLE_SUPERADMIN','ROLE_MODERATOR','ROLE_USER'];
         yield ChoiceField::new('roles')
             ->setChoices(array_combine($roles, $roles))
             ->allowMultipleChoices()
