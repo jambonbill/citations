@@ -1,0 +1,18 @@
+api_platform:
+    title: Citation API
+    description: API citation pour ECF II
+    version: 0.0.1
+    show_webby: false
+    
+    #docs?
+    # enable_docs: false
+    # enable_entrypoint: false
+    # enable_swagger: false
+    # enable_swagger_ui: false
+
+    formats:
+        jsonld: [application/ld+json]
+        json: [application/json]        
+        html: [text/html]
+        #jsonhal: [application/hal+json]
+        #csv: [text/csv]
