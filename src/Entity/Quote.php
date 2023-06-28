@@ -14,12 +14,28 @@ class Quote
     #[ORM\Column]
     private ?int $id = null;
 
+    
+    /**
+     * The Quote in itself
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 255)]
     private ?string $data = null;
 
+    /**
+     * Quote context and explanation
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $explanation = null;
 
+    /**
+     * Quote Author
+     *
+     * @var string|null
+     */
     #[ORM\ManyToOne(inversedBy: 'quotes')]
     private ?Author $author = null;
 

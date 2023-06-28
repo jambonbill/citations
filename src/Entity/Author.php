@@ -7,36 +7,92 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-use Cocur\Slugify\Slugify;
+use Symfony\Component\Serializer\Annotation\Groups;
 
+use Cocur\Slugify\Slugify;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
 
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
+#[ApiResource(operations:[
+        //new Post(),
+        new Get(),
+        //new Put(),
+        new GetCollection(),
+        //new Post(),        
+    ],
+    normalizationContext:[
+        'groups'=>['author:read']
+    ],
+    denormalizationContext:[
+        'groups'=>['author:write']
+    ],
+    paginationItemsPerPage:50)
+]
 class Author
 {
+    /**
+     * Author unique ID
+     *
+     * @var string|null
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['author:read'])]
     private ?int $id = null;
 
+    /**
+     * Author name
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 255)]
+    #[Groups(['author:read'])]
     private ?string $name = null;
 
+    
+    /**
+     * Author permalink/slug
+     *
+     * @var string|null
+     */
+    #[ORM\Column(length: 31, nullable: false)]
+    #[Groups(['author:read'])]
+    private ?string $slug = null;
+
+    
+    /**
+     * Author biography
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 1023, nullable: true)]
+    #[Groups(['author:read'])]
     private ?string $bio = null;
 
+    
+    /**
+     * Author record creation time
+     *
+     * @var \DateTimeImmutable|null
+     */
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
+    
     #[ORM\ManyToOne(inversedBy: 'authors')]
     private ?User $created_by = null;
 
+    
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Quote::class)]
+    #[Groups(['author:read'])]
     private Collection $quotes;
 
-    #[ORM\Column(length: 31, nullable: false)]
-    private ?string $slug = null;
     
-    private $slugify = null;
+    
+    private $slugify = null;//slugify service
 
     public function __construct()
     {
