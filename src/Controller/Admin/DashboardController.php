@@ -76,7 +76,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Quotes', 'fas fa-list', Quote::class);
         //yield MenuItem::linkToUrl("--","",'#');
         yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class)
-            //->setPermission('ROLE_ADMIN')
+            ->setPermission('ROLE_ADMIN')
             ;
         
         
