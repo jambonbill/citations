@@ -43,7 +43,6 @@ final class UserFactory extends ModelFactory
     const ROLES = [
         'ROLE_USER',
         'ROLE_ADMIN',
-        'ROLE_NOOB',
         'ROLE_MODERATOR',
         'ROLE_SUPERVISOR',
     ];
@@ -61,7 +60,7 @@ final class UserFactory extends ModelFactory
             'firstName' => self::faker()->firstName(),
             'lastName' => self::faker()->lastName(),
             'isVerified' => self::faker()->boolean(),
-            'password' => self::faker()->password(),
+            //'password' => 'turlututu',
             'roles' => [self::faker()->randomElement(self::ROLES)],
         ];
     }
