@@ -49,7 +49,7 @@ final class AuthorFactory extends ModelFactory
         return [
             'created_at' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
             'name' => self::faker('fr_FR')->name(),
-            'slug' => self::faker()->text(31),
+            //'slug' => self::faker()->text(31),
         ];
     }
 
